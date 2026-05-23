@@ -1,0 +1,11 @@
+services:
+
+  3xui:
+    image: ghcr.io/mhsanaei/3x-ui:latest
+    hostname: ${DOMAIN}
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./db:/etc/x-ui
+      - ./cert:/root/cert
+    network_mode: host

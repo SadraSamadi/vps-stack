@@ -1,0 +1,12 @@
+services:
+
+  masterdns:
+    image: ghcr.io/masterking32/masterdnsvpn:latest
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - ./data:/data
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
