@@ -11,3 +11,9 @@
 ```sh
 echo "TUNNEL_AUTH_KEY: $(openssl rand -hex 24)" > .env
 ```
+
+###### Create Docker network:
+
+```sh
+docker network create web
+```
