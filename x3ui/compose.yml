@@ -9,13 +9,13 @@ services:
     volumes:
       - ./db:/etc/x-ui
       - ./cert:/root/cert
-    # network_mode: host
-    expose:
-      - "8080"
-      - "9090"
-    networks:
-      - web
+    network_mode: host
+    # expose:
+    #   - "8080"
+    #   - "9090"
+    # networks:
+    #   - web
 
-networks:
-  web:
-    external: true
+# networks:
+#   web:
+#     external: true

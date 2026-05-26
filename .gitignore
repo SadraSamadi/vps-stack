@@ -1,8 +1,6 @@
-/3xui/db
-/3xui/cert
-/masterdns/data
 /caddy/config
 /caddy/data
+/masterdns/data
 /x3ui/cert
 /x3ui/db
 .env
