@@ -2,6 +2,7 @@ services:
 
   masterdns:
     image: ghcr.io/masterking32/masterdnsvpn:latest
+    container_name: masterdns
     restart: unless-stopped
     environment:
       DOMAIN: ${DOMAIN}
