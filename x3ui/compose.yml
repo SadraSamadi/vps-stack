@@ -1,11 +1,21 @@
 services:
 
-  3xui:
+  x3ui:
     image: ghcr.io/mhsanaei/3x-ui:latest
+    container_name: x3ui
     hostname: ${DOMAIN}
     restart: unless-stopped
     tty: true
     volumes:
       - ./db:/etc/x-ui
       - ./cert:/root/cert
-    network_mode: host
+    # network_mode: host
+    expose:
+      - "8080"
+      - "9090"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

@@ -1,0 +1,52 @@
+{$HOME_DOMAIN} {
+	root /var/www
+	file_server
+}
+
+{$MHRV_DOMAIN} {
+  reverse_proxy mhrv:8080
+}
+
+{$X3UI_DOMAIN} {
+
+    encode gzip
+
+    # TLS 1.3 mandatory!
+    tls {
+        protocols tls1.3
+    }
+
+    # Protect your GUI with Basic Auth
+    route /admin* {
+        basic_auth {
+            admin {$X3UI_PASS}
+        }
+        reverse_proxy x3ui:8080
+    }
+
+    # Obfuscate the Endpoint
+    route /api/v1* {
+        @websockets {
+            header Connection *Upgrade*
+            header Upgrade websocket
+        }
+        reverse_proxy @websockets x3ui:9090
+        respond "Forbidden" 403
+    }
+
+    # Security Header
+    header {
+        header_up Authorization { >Authorization }
+        header_up Content-Type { >Content-Type }
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options nosniff
+        X-Frame-Options SAMEORIGIN
+        Referrer-Policy strict-origin-when-cross-origin
+        -Server
+        -X-Powered-By
+    }
+
+    # Fallback
+    respond "Not found!" 404
+
+}

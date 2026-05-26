@@ -1,3 +1,0 @@
-{$DOMAIN} {
-  reverse_proxy tunnel:8080
-}
