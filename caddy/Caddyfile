@@ -1,5 +1,5 @@
 {$HOME_DOMAIN} {
-	root /var/www
+	root /srv
 	file_server
 }
 

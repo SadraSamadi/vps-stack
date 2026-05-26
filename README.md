@@ -17,3 +17,9 @@ echo "TUNNEL_AUTH_KEY: $(openssl rand -hex 24)" > .env
 ```sh
 docker network create web
 ```
+
+###### Encrypt Caddy password:
+
+```sh
+docker run --rm caddy:latest caddy hash-password --plaintext 'secret'
+```
