@@ -6,7 +6,7 @@ services:
     env_file: .env
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./sites:/srv
+      - ./site:/srv
       - ./data:/data
       - ./config:/config
     ports:
